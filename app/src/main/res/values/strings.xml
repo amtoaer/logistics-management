@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">内测版本</string>
+    <string name="title">物流管理系统</string>
+    <string name="login">登陆</string>
+    <string name="exit">退出</string>
+    <string name="accountHint">用户名</string>
+    <string name="passwordHint">密码</string>
+    <string name="loginFailed">登陆失败，请检查用户名密码后重试</string>
+    <string name="usernameInvalid">用户名不能为空</string>
+    <string name="passwordInvalid">密码长度需大于等于8</string>
+    <string name="welcomeMessage">欢迎</string>
+    <string name="logout">切换用户</string>
+</resources>
