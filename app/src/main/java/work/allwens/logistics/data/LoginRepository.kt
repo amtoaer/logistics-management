@@ -1,5 +1,6 @@
 package work.allwens.logistics.data
 
+import androidx.annotation.WorkerThread
 import work.allwens.logistics.data.dao.UserDao
 import work.allwens.logistics.data.model.User
 import java.io.IOException
@@ -7,14 +8,15 @@ import java.io.IOException
 class LoginRepository(private val userDao: UserDao) {
     var currentUser: User? = null
 
-    fun login(username: String, password: String): Result<User> {
-        when (val result = userDao.findByUserInfo(username, password)) {
+    @WorkerThread
+    suspend fun login(account: String, password: String): Result<User> {
+        return when (val result = userDao.findByUserInfo(account, password)) {
             null -> {
-                return Result.Error(IOException())
+                Result.Error(IOException())
             }
             else -> {
                 this.currentUser = result
-                return Result.Success(result)
+                Result.Success(result)
             }
         }
     }
