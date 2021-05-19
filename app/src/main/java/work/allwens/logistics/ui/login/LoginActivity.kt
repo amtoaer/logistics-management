@@ -66,7 +66,7 @@ class LoginActivity : BaseActivity() {
         // 登陆按钮触发登陆行为
         login.setOnClickListener {
             // 查看登陆结果
-            loginViewModel.login(login.text.toString(), password.text.toString())
+            loginViewModel.login(account.text.toString(), password.text.toString())
         }
         // 退出按钮销毁所有activity
         exit.setOnClickListener {
