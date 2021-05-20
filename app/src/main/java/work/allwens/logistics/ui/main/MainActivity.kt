@@ -1,5 +1,6 @@
 package work.allwens.logistics.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +12,7 @@ import work.allwens.logistics.ui.BaseActivity
 import work.allwens.logistics.ui.Helper
 import work.allwens.logistics.ui.login.LoginViewModel
 import work.allwens.logistics.ui.login.LoginViewModelFactory
+import work.allwens.logistics.ui.waybill.WaybillShowActivity
 
 class MainActivity : BaseActivity() {
     private lateinit var currentUser: User
@@ -28,6 +30,7 @@ class MainActivity : BaseActivity() {
         val password = findViewById<EditText>(R.id.password)
         val exit = findViewById<Button>(R.id.exit)
         val switchUser = findViewById<Button>(R.id.switchUser)
+        val showLocalWaybill = findViewById<Button>(R.id.showLocalWaybill)
         // 设置用户名密码
         username.setText("我的用户名为：${currentUser.username}")
         password.setText("我的密码为：${currentUser.password}")
@@ -38,6 +41,11 @@ class MainActivity : BaseActivity() {
         // 返回上一页面
         switchUser.setOnClickListener {
             Helper.removeActivity(this)
+        }
+        // 展示订单
+        showLocalWaybill.setOnClickListener {
+            val intent = Intent(this, WaybillShowActivity::class.java)
+            startActivity(intent)
         }
     }
 }
