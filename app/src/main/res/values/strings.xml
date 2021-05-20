@@ -10,6 +10,8 @@
     <string name="passwordInvalid">密码长度需大于等于8</string>
     <string name="welcomeMessage">欢迎</string>
     <string name="logout">切换用户</string>
+    <string name="username">我的用户名为：%s</string>
+    <string name="password">我的密码为：%s</string>
     <string name="transportInfo">%1$s-%2$s</string>
     <string name="goodsInfo">%1$s %2$s件</string>
     <string name="no">No.%s</string>

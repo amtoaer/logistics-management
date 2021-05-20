@@ -32,8 +32,8 @@ class MainActivity : BaseActivity() {
         val switchUser = findViewById<Button>(R.id.switchUser)
         val showLocalWaybill = findViewById<Button>(R.id.showLocalWaybill)
         // 设置用户名密码
-        username.setText("我的用户名为：${currentUser.username}")
-        password.setText("我的密码为：${currentUser.password}")
+        username.setText(getString(R.string.username, currentUser.username))
+        password.setText(getString(R.string.password, currentUser.password))
         // 退出程序
         exit.setOnClickListener {
             Helper.exitTheApp()
