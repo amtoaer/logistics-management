@@ -10,4 +10,11 @@
     <string name="passwordInvalid">密码长度需大于等于8</string>
     <string name="welcomeMessage">欢迎</string>
     <string name="logout">切换用户</string>
+    <string name="transportInfo">%1$s-%2$s</string>
+    <string name="goodsInfo">%1$s %2$s件</string>
+    <string name="no">No.%s</string>
+    <string name="peopleInfo">收货人：%1$s(%2$s)</string>
+    <string name="paidInfo">已付%s元</string>
+    <string name="toPayInfo">到付%s元</string>
+    <string name="showLocalWaybill">查看本地订单</string>
 </resources>
