@@ -58,10 +58,10 @@ class LoginActivity : BaseActivity() {
         })
         // 实时响应用户名密码的变化
         account.afterTextChanged {
-            loginViewModel.isDataValid(login.text.toString(), password.text.toString())
+            loginViewModel.isDataValid(account.text.toString(), password.text.toString())
         }
         password.afterTextChanged {
-            loginViewModel.isDataValid(login.text.toString(), password.text.toString())
+            loginViewModel.isDataValid(account.text.toString(), password.text.toString())
         }
         // 登陆按钮触发登陆行为
         login.setOnClickListener {
