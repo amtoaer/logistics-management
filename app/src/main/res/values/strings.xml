@@ -19,4 +19,17 @@
     <string name="paidInfo">已付%s元</string>
     <string name="toPayInfo">到付%s元</string>
     <string name="showLocalWaybill">查看本地订单</string>
+    <string name="to">到站：</string>
+    <string name="from">发站：</string>
+    <string name="fromName">发货人：</string>
+    <string name="toName">收货人：</string>
+    <string name="fromTel">发货电话：</string>
+    <string name="toTel">收货电话</string>
+    <string name="goodsName">货物名称：</string>
+    <string name="goodsCount">件数：</string>
+    <string name="paid">已付运费：</string>
+    <string name="toPay">到付运费：</string>
+    <string name="addLocalWaybill">添加本地订单</string>
+    <string name="add">添加</string>
+    <string name="back">返回</string>
 </resources>
