@@ -20,8 +20,8 @@ class WaybillShowActivity : BaseActivity() {
         val adapter = WaybillAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        waybillViewModel.allWaybills.observe(this@WaybillShowActivity) { waybills ->
+        waybillViewModel.allWaybills.observe(this@WaybillShowActivity, { waybills ->
             waybills.let { adapter.submitList(it) }
-        }
+        })
     }
 }
