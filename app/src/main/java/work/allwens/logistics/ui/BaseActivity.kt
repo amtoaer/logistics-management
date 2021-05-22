@@ -14,4 +14,9 @@ open class BaseActivity : AppCompatActivity() {
         super.onDestroy()
         Helper.removeActivity(this)
     }
+
+    fun exit() {
+        Helper.removeActivity(this)
+        this.finish()
+    }
 }
