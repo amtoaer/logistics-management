@@ -12,6 +12,7 @@ import work.allwens.logistics.ui.BaseActivity
 import work.allwens.logistics.ui.Helper
 import work.allwens.logistics.ui.login.LoginViewModel
 import work.allwens.logistics.ui.login.LoginViewModelFactory
+import work.allwens.logistics.ui.waybill.WaybillAddActivity
 import work.allwens.logistics.ui.waybill.WaybillShowActivity
 
 class MainActivity : BaseActivity() {
@@ -31,6 +32,7 @@ class MainActivity : BaseActivity() {
         val exit = findViewById<Button>(R.id.exit)
         val switchUser = findViewById<Button>(R.id.switchUser)
         val showLocalWaybill = findViewById<Button>(R.id.showLocalWaybill)
+        val addLocalWaybill = findViewById<Button>(R.id.addLocalWaybill)
         // 设置用户名密码
         username.setText(getString(R.string.username, currentUser.username))
         password.setText(getString(R.string.password, currentUser.password))
@@ -45,6 +47,10 @@ class MainActivity : BaseActivity() {
         // 展示订单
         showLocalWaybill.setOnClickListener {
             val intent = Intent(this, WaybillShowActivity::class.java)
+            startActivity(intent)
+        }
+        addLocalWaybill.setOnClickListener {
+            val intent = Intent(this, WaybillAddActivity::class.java)
             startActivity(intent)
         }
     }
