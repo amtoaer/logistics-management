@@ -43,7 +43,8 @@ abstract class AppDatabase : RoomDatabase() {
                                 "刘文兴",
                                 "20184402",
                                 "12345678",
-                                "12365413540"
+                                "12365413540",
+                                "沈阳"
                             )
                         )
                         waybillDao.insert(
@@ -56,14 +57,14 @@ abstract class AppDatabase : RoomDatabase() {
                                 "王某",
                                 "12378965412",
                                 "沙发",
-                                1,
-                                20,
-                                50
+                                "1",
+                                "20",
+                                "50"
                             )
                         )
                         waybillDao.insert(
                             Waybill(
-                                1,
+                                2,
                                 "南通",
                                 "沈阳",
                                 "刘某",
@@ -71,9 +72,9 @@ abstract class AppDatabase : RoomDatabase() {
                                 "张某",
                                 "12378975412",
                                 "电视",
-                                1,
-                                1000,
-                                2000
+                                "1",
+                                "1000",
+                                "2000"
                             )
                         )
                     }
