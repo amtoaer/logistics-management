@@ -84,7 +84,7 @@ class LoginActivity : BaseActivity() {
         Toast.makeText(
             applicationContext,
             "$welcome $username",
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         ).show()
     }
 }
