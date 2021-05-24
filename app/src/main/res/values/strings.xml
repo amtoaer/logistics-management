@@ -32,4 +32,9 @@
     <string name="addLocalWaybill">添加本地订单</string>
     <string name="add">添加</string>
     <string name="back">返回</string>
+    <string name="toError">到站不能为空</string>
+    <string name="nameError">货物名称不能为空</string>
+    <string name="countError">货物件数不能为空</string>
+    <string name="addError">插入订单失败</string>
+    <string name="addSuccess">插入订单成功</string>
 </resources>
