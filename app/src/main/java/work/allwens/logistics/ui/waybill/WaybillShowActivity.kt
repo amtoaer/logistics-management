@@ -17,15 +17,18 @@ class WaybillShowActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_show_local)
+        setContentView(R.layout.activity_show)
         val recyclerView: RecyclerView = findViewById(R.id.list)
         val adapter = WaybillAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+        // 根据页面跳转的传参调整该页面的显示策略
         when (intent.getIntExtra("type", 0)) {
+            // 0表示查看本地订单
             0 -> waybillViewModel.allWaybills.observe(this@WaybillShowActivity, { waybills ->
                 waybills.let { adapter.submitList(it) }
             })
+            // 1表示查看XML网络订单
             1 -> {
                 Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
                 waybillViewModel.requestResult.observe(this, Observer {
@@ -40,6 +43,7 @@ class WaybillShowActivity : BaseActivity() {
                 )
                 waybillViewModel.requestXml()
             }
+            // 2表示查看JSON网络订单
             2 -> {
                 Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
                 waybillViewModel.requestResult.observe(this, Observer {

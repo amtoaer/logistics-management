@@ -24,16 +24,17 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
     val formState: LiveData<FormState> = _formState
 
     // 本地订单的添加结果
-    private val _addResult = MutableLiveData<AddResult>()
-    val addResult: LiveData<AddResult> = _addResult
+    private val _addResult = MutableLiveData<Result>()
+    val addResult: LiveData<Result> = _addResult
 
     // 网络订单的请求结果
-    private val _requestResult = MutableLiveData<AddResult>()
-    val requestResult: LiveData<AddResult> = _requestResult
+    private val _requestResult = MutableLiveData<Result>()
+    val requestResult: LiveData<Result> = _requestResult
 
     private val client = OkHttpClient()
 
 
+    // 请求XML数据
     fun requestXml() {
         viewModelScope.launch(IO) {
             val request =
@@ -42,17 +43,18 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
                 val resp = client.newCall(request).execute()
                 allNetWorkWaybills = XmlParser.parse(resp.body!!.byteStream())
                 launch(Main) {
-                    _requestResult.value = AddResult(true)
+                    _requestResult.value = Result(true)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 launch(Main) {
-                    _requestResult.value = AddResult(false)
+                    _requestResult.value = Result(false)
                 }
             }
         }
     }
 
+    // 请求JSON数据
     fun requestJson() {
         viewModelScope.launch(IO) {
             val request =
@@ -62,23 +64,25 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
                 val resp = client.newCall(request).execute()
                 allNetWorkWaybills = JsonParser.parse(resp.body!!.string())
                 launch(Main) {
-                    _requestResult.value = AddResult(true)
+                    _requestResult.value = Result(true)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 launch(Main) {
-                    _requestResult.value = AddResult(false)
+                    _requestResult.value = Result(false)
                 }
             }
         }
     }
 
+    // 插入本地订单
     fun insert(waybill: Waybill) {
         viewModelScope.launch {
             _addResult.value = waybillRepository.insert(waybill)
         }
     }
 
+    // 检查添加订单表格中的必填项
     fun checkForm(to: String, name: String, count: String) {
         val currentFormState = FormState(null, null, null, false)
         if (!isToValid(to)) {
@@ -96,10 +100,13 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
         _formState.value = currentFormState
     }
 
+    // 到站是否为空
     private fun isToValid(to: String): Boolean = to.isNotBlank()
 
+    // 商品名称是否为空
     private fun isNameValid(name: String): Boolean = name.isNotBlank()
 
+    // 商品数量是否为空
     private fun isCountValid(count: String): Boolean = count.isNotBlank()
 }
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import work.allwens.logistics.R
 import work.allwens.logistics.data.model.Waybill
 
+// 定义数据和视图行的绑定
 class WaybillAdapter : ListAdapter<Waybill, WaybillAdapter.WaybillHolder>(WaybillComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WaybillHolder {

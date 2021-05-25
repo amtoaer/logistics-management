@@ -15,6 +15,7 @@ open class BaseActivity : AppCompatActivity() {
         Helper.removeActivity(this)
     }
 
+    // 手动退出当前页面
     fun exit() {
         Helper.removeActivity(this)
         this.finish()

@@ -27,11 +27,14 @@ object XmlParser {
         while (eventType != XmlPullParser.END_DOCUMENT) {
             val tagName = parser.name
             when (eventType) {
+                //遇到标签名是订单记录则新建一个订单
                 XmlPullParser.START_TAG -> if (tagName == "waybillRecord") {
                     waybill = Waybill()
                 }
+                //解析标签内容
                 XmlPullParser.TEXT
                 -> text = parser.text
+                //根据不同的结束标签为订单填充数据（结束标签为订单记录时将该订单加入结果集）
                 XmlPullParser.END_TAG -> when (tagName) {
                     "consignor" -> waybill!!.fromName = text
                     "consignorPhoneNumber" -> waybill!!.fromTel = text
@@ -46,6 +49,7 @@ object XmlParser {
                     "waybillRecord" -> waybills.add(waybill!!)
                 }
             }
+            // 继续扫描
             eventType = parser.next()
         }
         return waybills

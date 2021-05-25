@@ -13,16 +13,20 @@ import work.allwens.logistics.data.model.User
 import work.allwens.logistics.data.model.Waybill
 
 
+// room数据库实现
 @Database(entities = [User::class, Waybill::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
     abstract fun waybillDao(): WaybillDao
 
     // 类似于java中的静态对象和方法
     companion object {
+        // 单例模式且保证线程安全
         @Volatile
         private var Instance: AppDatabase? = null
 
+        // 数据库的回调，用于插入初始数据
         private class AppDatabaseCallback(
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {

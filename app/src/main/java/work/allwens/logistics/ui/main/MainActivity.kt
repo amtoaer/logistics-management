@@ -46,20 +46,23 @@ class MainActivity : BaseActivity() {
         switchUser.setOnClickListener {
             Helper.removeActivity(this)
         }
-        // 展示订单
+        // 展示本地订单
         showLocalWaybill.setOnClickListener {
             val intent = Intent(this, WaybillShowActivity::class.java)
             startActivity(intent)
         }
+        // 添加本地订单
         addLocalWaybill.setOnClickListener {
             val intent = Intent(this, WaybillAddActivity::class.java)
             startActivity(intent)
         }
+        // 展示XML订单
         showXMLWaybill.setOnClickListener {
             val intent = Intent(this, WaybillShowActivity::class.java)
             intent.putExtra("type", 1)
             startActivity(intent)
         }
+        // 展示JSON订单
         showJSONWaybill.setOnClickListener {
             val intent = Intent(this, WaybillShowActivity::class.java)
             intent.putExtra("type", 2)

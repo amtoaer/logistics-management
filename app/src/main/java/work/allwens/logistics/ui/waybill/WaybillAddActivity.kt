@@ -29,6 +29,7 @@ class WaybillAddActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_waybill)
+        // 获取所有编辑框
         val from: EditText = findViewById(R.id.from)
         val to: EditText = findViewById(R.id.to)
         val fromPeople: EditText = findViewById(R.id.fromPeople)
@@ -43,6 +44,7 @@ class WaybillAddActivity : BaseActivity() {
         val add: Button = findViewById(R.id.add)
         from.setText((loginViewModel.getUser() as User).location)
 
+        // 监听编辑框状态
         waybillViewModel.formState.observe(this, Observer {
             val formState = it ?: return@Observer
             add.isEnabled = formState.isDataValid
@@ -57,6 +59,7 @@ class WaybillAddActivity : BaseActivity() {
             }
         })
 
+        // 监听添加结果并进行相应处理
         waybillViewModel.addResult.observe(this, Observer {
             val result = it ?: return@Observer
             if (result.success) {
@@ -75,6 +78,7 @@ class WaybillAddActivity : BaseActivity() {
             }
         })
 
+        //监听到站的改变
         to.afterTextChanged {
             waybillViewModel.checkForm(
                 to.text.toString(),
@@ -83,6 +87,7 @@ class WaybillAddActivity : BaseActivity() {
             )
         }
 
+        // 监听商品数量的改变
         goodsCount.afterTextChanged {
             waybillViewModel.checkForm(
                 to.text.toString(),
@@ -91,6 +96,7 @@ class WaybillAddActivity : BaseActivity() {
             )
         }
 
+        // 监听商品名称的改变
         goodsName.afterTextChanged {
             waybillViewModel.checkForm(
                 to.text.toString(),
@@ -99,9 +105,12 @@ class WaybillAddActivity : BaseActivity() {
             )
         }
 
+        // 点击返回退出该页面
         back.setOnClickListener {
             this.exit()
         }
+        
+        // 点击添加，调用添加订单方法
         add.setOnClickListener {
             waybillViewModel.insert(
                 Waybill(
