@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import work.allwens.logistics.data.WaybillRepository
 import work.allwens.logistics.data.model.Waybill
+import work.allwens.logistics.utils.JsonParser
 import work.allwens.logistics.utils.XmlParser
 import java.lang.IllegalArgumentException
 
@@ -31,7 +32,7 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
     val requestResult: LiveData<AddResult> = _requestResult
 
     private val client = OkHttpClient()
-    
+
 
     fun requestXml() {
         viewModelScope.launch(IO) {
@@ -40,6 +41,26 @@ class WaybillViewModel(private val waybillRepository: WaybillRepository) : ViewM
             try {
                 val resp = client.newCall(request).execute()
                 allNetWorkWaybills = XmlParser.parse(resp.body!!.byteStream())
+                launch(Main) {
+                    _requestResult.value = AddResult(true)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                launch(Main) {
+                    _requestResult.value = AddResult(false)
+                }
+            }
+        }
+    }
+
+    fun requestJson() {
+        viewModelScope.launch(IO) {
+            val request =
+                Request.Builder().url("http://60.12.122.142:6080/simulated-Waybills-db.json")
+                    .build()
+            try {
+                val resp = client.newCall(request).execute()
+                allNetWorkWaybills = JsonParser.parse(resp.body!!.string())
                 launch(Main) {
                     _requestResult.value = AddResult(true)
                 }

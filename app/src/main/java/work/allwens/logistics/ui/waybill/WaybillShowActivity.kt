@@ -41,7 +41,18 @@ class WaybillShowActivity : BaseActivity() {
                 waybillViewModel.requestXml()
             }
             2 -> {
-
+                Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
+                waybillViewModel.requestResult.observe(this, Observer {
+                    val requestResult = it ?: return@Observer
+                    if (requestResult.success) {
+                        Toast.makeText(applicationContext, "请求成功", Toast.LENGTH_SHORT).show()
+                        adapter.submitList(waybillViewModel.allNetWorkWaybills)
+                    } else {
+                        Toast.makeText(applicationContext, "请求失败", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                )
+                waybillViewModel.requestJson()
             }
         }
     }
