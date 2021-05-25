@@ -1,6 +1,8 @@
 package work.allwens.logistics.ui.waybill
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -29,35 +31,30 @@ class WaybillShowActivity : BaseActivity() {
                 waybills.let { adapter.submitList(it) }
             })
             // 1表示查看XML网络订单
-            1 -> {
-                Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
-                waybillViewModel.requestResult.observe(this, Observer {
-                    val requestResult = it ?: return@Observer
-                    if (requestResult.success) {
-                        Toast.makeText(applicationContext, "请求成功", Toast.LENGTH_SHORT).show()
-                        adapter.submitList(waybillViewModel.allNetWorkWaybills)
-                    } else {
-                        Toast.makeText(applicationContext, "请求失败", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                )
-                waybillViewModel.requestXml()
-            }
+            1 -> loadNetWorkWaybills { waybillViewModel.requestXml() }
             // 2表示查看JSON网络订单
-            2 -> {
-                Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
-                waybillViewModel.requestResult.observe(this, Observer {
-                    val requestResult = it ?: return@Observer
-                    if (requestResult.success) {
-                        Toast.makeText(applicationContext, "请求成功", Toast.LENGTH_SHORT).show()
-                        adapter.submitList(waybillViewModel.allNetWorkWaybills)
-                    } else {
-                        Toast.makeText(applicationContext, "请求失败", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                )
-                waybillViewModel.requestJson()
+            2 -> loadNetWorkWaybills { waybillViewModel.requestJson() }
+        }
+    }
+
+    private fun loadNetWorkWaybills(load: () -> Unit) {
+        val loading = findViewById<ProgressBar>(R.id.loading)
+        val adapter = findViewById<RecyclerView>(R.id.list).adapter as WaybillAdapter
+        loading.visibility = View.VISIBLE
+        waybillViewModel.requestResult.observe(this, Observer {
+            val requestResult = it ?: return@Observer
+            if (requestResult.success) {
+                loading.visibility = View.INVISIBLE
+                adapter.submitList(waybillViewModel.allNetWorkWaybills)
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.requestFailed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
+        )
+        load()
     }
 }

@@ -39,4 +39,5 @@
     <string name="countError">货物件数不能为空</string>
     <string name="addError">插入订单失败</string>
     <string name="addSuccess">插入订单成功</string>
+    <string name="requestFailed">加载数据失败</string>
 </resources>
