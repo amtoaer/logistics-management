@@ -1,7 +1,9 @@
 package work.allwens.logistics.ui.waybill
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import work.allwens.logistics.LogisticApplication
@@ -20,8 +22,27 @@ class WaybillShowActivity : BaseActivity() {
         val adapter = WaybillAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        waybillViewModel.allWaybills.observe(this@WaybillShowActivity, { waybills ->
-            waybills.let { adapter.submitList(it) }
-        })
+        when (intent.getIntExtra("type", 0)) {
+            0 -> waybillViewModel.allWaybills.observe(this@WaybillShowActivity, { waybills ->
+                waybills.let { adapter.submitList(it) }
+            })
+            1 -> {
+                Toast.makeText(applicationContext, "开始请求", Toast.LENGTH_SHORT).show()
+                waybillViewModel.requestResult.observe(this, Observer {
+                    val requestResult = it ?: return@Observer
+                    if (requestResult.success) {
+                        Toast.makeText(applicationContext, "请求成功", Toast.LENGTH_SHORT).show()
+                        adapter.submitList(waybillViewModel.allNetWorkWaybills)
+                    } else {
+                        Toast.makeText(applicationContext, "请求失败", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                )
+                waybillViewModel.requestXml()
+            }
+            2 -> {
+
+            }
+        }
     }
 }

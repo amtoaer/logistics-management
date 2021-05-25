@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "t_waybill")
 data class Waybill(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "waybill_id") val id: Int,
-    @ColumnInfo(name = "from_station") val fromStation: String,
-    @ColumnInfo(name = "to_station") val toStation: String,
-    @ColumnInfo(name = "from_name") val fromName: String,
-    @ColumnInfo(name = "from_tel") val fromTel: String,
-    @ColumnInfo(name = "to_name") val toName: String,
-    @ColumnInfo(name = "to_tel") val toTel: String,
-    @ColumnInfo(name = "goods_name") val goodsName: String,
-    @ColumnInfo(name = "goods_count") val goodsCount: String,
-    @ColumnInfo(name = "paid_money") val paidMoney: String,
-    @ColumnInfo(name = "to_pay_money") val toPayMoney: String
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "waybill_id") var id: Int = 0,
+    @ColumnInfo(name = "from_station") var fromStation: String = "",
+    @ColumnInfo(name = "to_station") var toStation: String = "",
+    @ColumnInfo(name = "from_name") var fromName: String = "",
+    @ColumnInfo(name = "from_tel") var fromTel: String = "",
+    @ColumnInfo(name = "to_name") var toName: String = "",
+    @ColumnInfo(name = "to_tel") var toTel: String = "",
+    @ColumnInfo(name = "goods_name") var goodsName: String = "",
+    @ColumnInfo(name = "goods_count") var goodsCount: String = "",
+    @ColumnInfo(name = "paid_money") var paidMoney: String = "",
+    @ColumnInfo(name = "to_pay_money") var toPayMoney: String = ""
 )
