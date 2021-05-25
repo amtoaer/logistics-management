@@ -34,6 +34,7 @@ class MainActivity : BaseActivity() {
         val showLocalWaybill = findViewById<Button>(R.id.showLocalWaybill)
         val addLocalWaybill = findViewById<Button>(R.id.addLocalWaybill)
         val showXMLWaybill = findViewById<Button>(R.id.showXmlWaybill)
+        val showJSONWaybill = findViewById<Button>(R.id.showJsonWaybill)
         // 设置用户名密码
         username.setText(getString(R.string.username, currentUser.username))
         password.setText(getString(R.string.password, currentUser.password))
@@ -57,6 +58,11 @@ class MainActivity : BaseActivity() {
         showXMLWaybill.setOnClickListener {
             val intent = Intent(this, WaybillShowActivity::class.java)
             intent.putExtra("type", 1)
+            startActivity(intent)
+        }
+        showJSONWaybill.setOnClickListener {
+            val intent = Intent(this, WaybillShowActivity::class.java)
+            intent.putExtra("type", 2)
             startActivity(intent)
         }
     }
