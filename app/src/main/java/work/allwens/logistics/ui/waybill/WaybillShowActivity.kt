@@ -6,6 +6,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import work.allwens.logistics.LogisticApplication
@@ -23,6 +25,7 @@ class WaybillShowActivity : BaseActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.list)
         val adapter = WaybillAdapter()
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(DividerItemDecoration(applicationContext, VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
         // 根据页面跳转的传参调整该页面的显示策略
         when (intent.getIntExtra("type", 0)) {
