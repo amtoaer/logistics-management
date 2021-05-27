@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "t_waybill")
 data class Waybill(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "waybill_id") var id: Int = 0,
+    @ColumnInfo(name = "waybill_no") var no: String = "",
     @ColumnInfo(name = "from_station") var fromStation: String = "",
     @ColumnInfo(name = "to_station") var toStation: String = "",
     @ColumnInfo(name = "from_name") var fromName: String = "",

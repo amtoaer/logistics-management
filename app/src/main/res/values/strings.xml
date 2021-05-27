@@ -21,6 +21,7 @@
     <string name="showLocalWaybill">查看本地订单</string>
     <string name="to">到站：</string>
     <string name="from">发站：</string>
+    <string name="noLabel">订单编号：</string>
     <string name="fromName">发货人：</string>
     <string name="toName">收货人：</string>
     <string name="fromTel">发货电话：</string>

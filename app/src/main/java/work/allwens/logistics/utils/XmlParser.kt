@@ -36,6 +36,7 @@ object XmlParser {
                 -> text = parser.text
                 //根据不同的结束标签为订单填充数据（结束标签为订单记录时将该订单加入结果集）
                 XmlPullParser.END_TAG -> when (tagName) {
+                    "waybillNo" -> waybill!!.no = text
                     "consignor" -> waybill!!.fromName = text
                     "consignorPhoneNumber" -> waybill!!.fromTel = text
                     "consignee" -> waybill!!.toName = text

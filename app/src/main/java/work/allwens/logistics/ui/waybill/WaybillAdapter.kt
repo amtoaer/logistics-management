@@ -44,7 +44,7 @@ class WaybillAdapter : ListAdapter<Waybill, WaybillAdapter.WaybillHolder>(Waybil
             )
             no.text = context.getString(
                 R.string.no,
-                waybill.id.toString()
+                waybill.no
             )
             peopleInfo.text = context.getString(
                 R.string.peopleInfo,

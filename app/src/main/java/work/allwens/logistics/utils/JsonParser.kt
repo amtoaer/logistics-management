@@ -14,6 +14,7 @@ object JsonParser {
             val jsonObject = jsonArray.getJSONObject(i)
             // 取相应数据内容构造订单
             val waybill = Waybill()
+            waybill.no = jsonObject.get("waybillNo") as String
             waybill.fromName = jsonObject.get("consignor") as String
             waybill.fromTel = jsonObject.get("consignorPhoneNumber") as String
             waybill.toName = jsonObject.get("consignee") as String
