@@ -95,6 +95,11 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "application_db"
                 ).addCallback(AppDatabaseCallback(scope)).build()
+                // 随便进行一些操作以执行回调
+                scope.launch {
+                    instance.beginTransaction()
+                    instance.endTransaction()
+                }
                 Instance = instance
                 instance
             }
