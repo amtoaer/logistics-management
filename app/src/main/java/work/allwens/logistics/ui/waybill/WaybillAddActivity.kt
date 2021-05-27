@@ -30,6 +30,7 @@ class WaybillAddActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_waybill)
         // 获取所有编辑框
+        val no: EditText = findViewById(R.id.no)
         val from: EditText = findViewById(R.id.from)
         val to: EditText = findViewById(R.id.to)
         val fromPeople: EditText = findViewById(R.id.fromPeople)
@@ -43,6 +44,9 @@ class WaybillAddActivity : BaseActivity() {
         val back: Button = findViewById(R.id.back)
         val add: Button = findViewById(R.id.add)
         from.setText((loginViewModel.getUser() as User).location)
+        to.error = getString(R.string.toError)
+        goodsName.error = getString(R.string.nameError)
+        goodsCount.error = getString(R.string.countError)
 
         // 监听编辑框状态
         waybillViewModel.formState.observe(this, Observer {
@@ -109,12 +113,13 @@ class WaybillAddActivity : BaseActivity() {
         back.setOnClickListener {
             this.exit()
         }
-        
+
         // 点击添加，调用添加订单方法
         add.setOnClickListener {
             waybillViewModel.insert(
                 Waybill(
                     0,
+                    no.text.toString(),
                     from.text.toString(),
                     to.text.toString(),
                     fromPeople.text.toString(),
