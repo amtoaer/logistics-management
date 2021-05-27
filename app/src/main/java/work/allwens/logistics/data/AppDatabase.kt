@@ -54,6 +54,7 @@ abstract class AppDatabase : RoomDatabase() {
                         waybillDao.insert(
                             Waybill(
                                 1,
+                                "X10001",
                                 "保定",
                                 "沈阳",
                                 "刘某",
@@ -69,6 +70,7 @@ abstract class AppDatabase : RoomDatabase() {
                         waybillDao.insert(
                             Waybill(
                                 2,
+                                "S10002",
                                 "南通",
                                 "沈阳",
                                 "刘某",
